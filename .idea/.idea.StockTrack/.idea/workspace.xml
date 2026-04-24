@@ -6,7 +6,16 @@
     <projectFile profileName="https">StockTrackApi/StockTrackApi.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ed300c-700c-4b91-94bb-cb0ace5939fd" name="Changes" comment="" />
+    <list default="true" id="04ed300c-700c-4b91-94bb-cb0ace5939fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/StockTrackApi/Helpers/JwtTokenHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockTrackApi/Models/Entities/Dtos/TokenResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockTrackApi/Models/Entities/Token.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StockTrack/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StockTrack/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StockTrackApi/Controllers/CompanyController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/StockTrackApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/StockTrackApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StockTrackApi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/StockTrackApi/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StockTrackApi/StockTrackApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/StockTrackApi/StockTrackApi.csproj" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,8 +48,9 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/StockTrackApi/Data/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/StockTrackApi/Deneme.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/StockTrackApi/DenemeController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StockTrackApi/Helpers/JwtTokenHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StockTrackApi/Models/Entities/Dtos/TokenResponseDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StockTrackApi/Models/Entities/Token.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -129,6 +139,9 @@
       <workItem from="1776625590086" duration="2170000" />
       <workItem from="1776627813218" duration="286000" />
       <workItem from="1776628201242" duration="3386000" />
+      <workItem from="1776757623484" duration="3443000" />
+      <workItem from="1776950445248" duration="5674000" />
+      <workItem from="1777013604965" duration="1542000" />
     </task>
     <task id="LOCAL-00001" summary="create : Project created db context added">
       <option name="closed" value="true" />
@@ -154,7 +167,55 @@
       <option name="project" value="LOCAL" />
       <updated>1776631556467</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ad: test controller created">
+      <option name="closed" value="true" />
+      <created>1776757700966</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776757700966</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add : migrations recreated">
+      <option name="closed" value="true" />
+      <created>1777014944524</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777014944525</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update: db context updated">
+      <option name="closed" value="true" />
+      <created>1777014966265</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1777014966265</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update: jwt creds added connection string changed">
+      <option name="closed" value="true" />
+      <created>1777015003191</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1777015003191</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update : register, login and jwt changed">
+      <option name="closed" value="true" />
+      <created>1777015061937</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1777015061937</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update: company class updated">
+      <option name="closed" value="true" />
+      <created>1777015083561</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1777015083561</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,31 +224,9 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="aa0e4b0b-fbf6-495d-a707-cb398654c691" value="TOOL_WINDOW" />
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-        <entry key="aa0e4b0b-fbf6-495d-a707-cb398654c691">
           <value>
             <State>
               <option name="CUSTOM_BOOLEAN_PROPERTIES">
@@ -200,7 +239,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -216,7 +255,13 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="create : Project created db context added" />
     <MESSAGE value="create : project created db context added" />
-    <option name="LAST_COMMIT_MESSAGE" value="create : project created db context added" />
+    <MESSAGE value="ad: test controller created" />
+    <MESSAGE value="add : migrations recreated" />
+    <MESSAGE value="update: db context updated" />
+    <MESSAGE value="update: jwt creds added connection string changed" />
+    <MESSAGE value="update : register, login and jwt changed" />
+    <MESSAGE value="update: company class updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: company class updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -233,6 +278,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/StockTrackApi/Controllers/AuthController.cs</url>
+          <line>26</line>
+          <properties documentPath="$PROJECT_DIR$/StockTrackApi/Controllers/AuthController.cs" containingFunctionPresentation="Method 'CreateCompany'">
+            <startOffsets>
+              <option value="833" />
+            </startOffsets>
+            <endOffsets>
+              <option value="834" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
