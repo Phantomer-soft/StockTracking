@@ -3,10 +3,10 @@
     public class Company
     {
         public Guid Id { get; set; }= Guid.NewGuid();
-        public string CompanyName { get; set; } = default!;
-        public string Mail { get; set; } = default!;
-        public string Password { get; set; } = default!;
-        public string PhoneNumber { get; set; } = default!;
+        public string Name { get; set; } = null!;
+        public string Mail { get; set; } = null!;
+        public string Password { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
         public bool Active { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         
