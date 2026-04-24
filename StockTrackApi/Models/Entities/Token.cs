@@ -1,0 +1,7 @@
+namespace StockTrackApi.Models.Entities;
+
+public class Token
+{
+    public string accessToken { get; set; } =  string.Empty;
+    public DateTime expiration { get; set; }
+}
