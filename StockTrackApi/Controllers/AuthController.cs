@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StockTrackApi.Data;
+using StockTrackApi.Helpers;
 using StockTrackApi.Models.Entities;
 using StockTrackApi.Models.Entities.Dtos;
 
@@ -10,51 +11,47 @@ namespace StockTrackApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        AppDbContext context;
+        AppDbContext _context;
+        JwtTokenHelper _jwtTokenHelper;
+        IConfiguration _configuration;
 
-        public AuthController(AppDbContext _context)
+        public AuthController(AppDbContext context, JwtTokenHelper jwtTokenHelper, IConfiguration configuration)
         {
-            context = _context;
+            _context = context;
+            _jwtTokenHelper = jwtTokenHelper;
+            _configuration = configuration;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public IActionResult CreateCompany([FromBody] CompanyRegisterDto request)
         {
-            var User = new Company
+            var user = new Company
             {
-                CompanyName = request.CompanyName,
+                Name = request.CompanyName,
                 Mail=request.Mail,
-                Password=request.Password,
+                Password=request.Password, // password düz string olarak tutulmaz şimdilik dursun daha sonra hashleriz 
                 PhoneNumber=request.PhoneNumber,
             };
 
-            context.Companies.Add(User);
-            context.SaveChanges();
+            _context.Companies.Add(user);
+            _context.SaveChanges();
 
             return Ok("Kayıt başarılı");
         }
 
+        [HttpPost("login")]
         public IActionResult Login([FromBody] CompanyLoginDto request)
         {
-            var Company=context.Companies.FirstOrDefault(c=>c.Mail==request.Mail);
-            if (Company == null)
+            var company = _context.Companies
+                .FirstOrDefault(c=>c.Mail==request.Mail &&  c.Password==request.Password && c.Active);
+            if (company == null)
             {
-                return BadRequest(new { Message = "Bu mail adresine kayıtlı kullanıcı bulunamadı" });
+                return BadRequest(new { Message = "E posta veya şifre hatalı" });
             }
-            if(Company.Password!=request.Password)
-            {
-                return BadRequest(new {Message="Şifre hatalı"});
-            }
-            if (!Company.Active)
-            {
-                return BadRequest(new { Message = "Hesap bulunamadı!" });
-            }
-           
             return Ok(new
             {
                 Message="Giriş başarılı",
-                CompanyId=Company.Id,
-                CompanyName=Company.CompanyName
+                Token=_jwtTokenHelper.CreateAccessToken(_configuration,company)
             });
         }
     }
