@@ -2,7 +2,7 @@
 
 namespace StockTrackApi.Models.Entities.Dtos
 {
-    public class CompanyLoginDto
+    public class LoginCompanyDto
     {
         [Required]
         [EmailAddress]

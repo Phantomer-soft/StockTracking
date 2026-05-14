@@ -2,7 +2,7 @@
 
 namespace StockTrackApi.Models.Entities.Dtos
 {
-    public class CompanyRegisterDto
+    public class RegisterCompanyDto
     {
         [Required(ErrorMessage ="Company name is required")]
         [MaxLength(100)]

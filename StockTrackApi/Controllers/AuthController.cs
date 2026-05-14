@@ -23,7 +23,7 @@ namespace StockTrackApi.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult CreateCompany([FromBody] CompanyRegisterDto request)
+        public IActionResult CreateCompany([FromBody] RegisterCompanyDto request)
         {
             var user = new Company
             {
@@ -40,7 +40,7 @@ namespace StockTrackApi.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] CompanyLoginDto request)
+        public IActionResult Login([FromBody] LoginCompanyDto request)
         {
             var company = _context.Companies
                 .FirstOrDefault(c=>c.Mail==request.Mail &&  c.Password==request.Password && c.Active);
