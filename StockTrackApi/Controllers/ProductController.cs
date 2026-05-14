@@ -12,6 +12,7 @@ namespace StockTrackApi.Controllers
     public class ProductController : ControllerBase
     {
         AppDbContext _context;
+        private Funcs _functions = new Funcs();
 
         public ProductController(AppDbContext context)
         {
@@ -27,15 +28,28 @@ namespace StockTrackApi.Controllers
                 Price = request.Price,
                 Stock = request.Stock,
                 Barcode = new string[] { request.Barcode },
+                Explanation = request.Explanation
             };
+            _context.Products.Add(product);
+            _context.SaveChanges();
             return Ok(new { Message = "Ürün eklendi" });
         }
 
-        [HttpGet]
+        [HttpGet("GetProducts")]
         public IActionResult GetProducts()
         {
             var prods = _context.Products.ToList();
-            return Ok(prods);
+            var dto = prods.Select(p => new ProductListDto()
+            {
+                Id = p.Id,
+                ProductName = p.ProductName,
+                Price = p.Price,
+                Barcode = p.Barcode,
+                Explanation = p.Explanation,
+                Stock = p.Stock
+            }).ToList();
+          
+            return Ok(dto);
 
         }
         [HttpGet("Search")]
@@ -65,7 +79,7 @@ namespace StockTrackApi.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetProductByBarcode")]
         public IActionResult GetProductByBarcode(string Barcode)
         {
             var prods = _context.Products.FirstOrDefault(p => p.Barcode.Contains(Barcode));
@@ -81,7 +95,7 @@ namespace StockTrackApi.Controllers
         [HttpPost("Delete")]
         public IActionResult DeleteProduct([FromBody] Guid Id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Id == Id);
+            var product = _functions.FindProduct(Id,_context);
             if (product == null)
             {
                 return NotFound(new { Message = "Ürün bulunamadı" });
@@ -100,7 +114,7 @@ namespace StockTrackApi.Controllers
         public IActionResult UpdateProduct([FromBody] UpdateProductDto request)
         {
             //listelenen ürün üzerinden seçim yap
-            var product = _context.Products.FirstOrDefault(p => p.Id == request.Id); //? 2? isdeleted kontrol edilmeli mi
+            var product = _functions.FindProduct(request.Id,_context); //? 2? isdeleted kontrol edilmeli mi
             if (product == null)
             {
                 return NotFound(new { Message = "Ürün bulunamadı" });
@@ -121,8 +135,7 @@ namespace StockTrackApi.Controllers
         [HttpPost("Sell")]
         public IActionResult SellProduct(SellProductDto request)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Id == request.Id); //ürün ara
-
+            var product = _functions.FindProduct(request.Id,_context); //ürün ara
             if (product == null)
             {
                 return NotFound(new { Message = "Ürün bulunamadı" });
@@ -147,7 +160,7 @@ namespace StockTrackApi.Controllers
         [HttpPost("UpdateStock")]
         public IActionResult UpdateStock(UpdateStockDto request)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Id == request.Id); //ürün ara
+            var product = _functions.FindProduct(request.Id,_context); //ürün ara
             if (product == null)
             {
                 return NotFound(new { Message = "Ürün bulunamadı" });
@@ -164,5 +177,31 @@ namespace StockTrackApi.Controllers
             }
             return Ok();
         }
+    }
+}
+
+public class Funcs
+{
+    private readonly AppDbContext _context;
+
+    public Funcs(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    public Funcs()
+    {
+    }
+
+    public Product? FindProduct(Guid id,AppDbContext context)
+    {
+        if (context == null) throw new Exception("Database context is not initialized.");
+
+        var product = context.Products.FirstOrDefault(p => p.Id == id);
+        if (product == null)
+        {
+            return null; 
+        }
+        return product;
     }
 }

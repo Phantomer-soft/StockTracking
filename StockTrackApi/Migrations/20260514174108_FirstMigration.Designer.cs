@@ -12,8 +12,8 @@ using StockTrackApi.Data;
 namespace StockTrackApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260507100712_First")]
-    partial class First
+    [Migration("20260514174108_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
